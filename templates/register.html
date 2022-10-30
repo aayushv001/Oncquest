@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+<style>
+button {
+-webkit-appearance: none;
+width: auto;
+min-width: 100px;
+border-radius: 24px;
+text-align: center;
+padding: 15px 40px;
+margin-top: 5px;
+background-color: #b08bf8;
+color: #fff;
+font-size: 14px;
+margin-left: auto;
+font-weight: 500;
+box-shadow: 0px 2px 6px -1px rgb(0 0 0 / 13%);
+border: none;
+transition: all 0.3s ease;
+outline: 0;}
+input[type=submit]{
+        -webkit-appearance: none;
+        width: auto;
+        min-width: 100px;
+        border-radius: 24px;
+        text-align: center;
+        padding: 15px 40px;
+        margin-top: 5px;
+        background-color: #b08bf8;
+        color: #fff;
+        font-size: 14px;
+        margin-left: auto;
+        font-weight: 500;
+        box-shadow: 0px 2px 6px -1px rgb(0 0 0 / 13%);
+        border: none;
+        transition: all 0.3s ease;
+        outline: 0;
+        }
+        input[type=submit]:disabled,input[type=submit][disabled]
+        {
+            background-color:#cccccc;
+            color:#666666;
+        }
+         .center {
+        text-align: center;
+        }
+    .centerh
+    {
+        padding: 25vh 0px;
+    }
+</style>
+</head>
+<body>
+<div>
+<form action="register" method="POST" style="display:inline;">
+    {%csrf_token%}
+<input type="submit" value="Add User" id="adduser" style="text-align: left;">
+</form>
+<form action="StartOp"id="StartOp" style="display: inline;">
+<input type="submit" value="Admin Page">
+</form>
+<form action="CAtracker" method="POST" style="display:inline;">
+{%csrf_token%}
+<input type="submit" value="Edit Record" id="editrec">
+</form>
+<form action="home" method="POST" style="display:inline;">
+{%csrf_token%}
+<input type="submit" value="{{role}}" id="role" style="float: right;" disabled>
+<input type="submit" value="{{name}}" id="name" style="float: right;" disabled>
+<input type="submit" value="Logout" style="float:right;">
+</form>
+<form action="exportdata" style="display:inline;">
+<input type="submit" value="Export Data" id="expdata">
+</form>
+<form action="dash" style="display:inline;">
+<input type="submit" value="Dashboard" id="dash">
+</form>
+</div>
+
+<div class="centerh" >
+<h4 style="color:#b08bf8; text-align:center;">Register New User:</h4>
+<form action="adduser" method="POST" autocomplete="off">
+{%csrf_token%}
+<div class="container-fluid">
+<div class="row justify-content-md-center">
+<div class="col-2">
+<div class="form-floating md-3">
+<input type="text" name="nname" class="form-control" id="nname">
+<label for="nname">Name</label>
+</div>
+</div>
+</div>
+<div class="row justify-content-md-center">
+<div class="col-2">
+<div class="form-floating md-3">
+<input type="text" name="nuser" class="form-control" id="nuser"> 
+<label for="nuser">Username</label>
+</div>
+</div>
+</div>
+<div class="row justify-content-md-center">
+<div class="col-2">
+<div class="form-floating md-3">
+<input type = "text" name="nrole" id="nrole" list="Browser" class="form-control">
+<label for="nrole">Role</label>
+    <datalist id="Browser">
+      <option value="ADMIN">
+      <option value="SR">
+      <option value="RECEIVING">
+      <option value="REPORTING">
+    </datalist>
+</div>
+</div>
+</div>
+<div class="row justify-content-md-center">
+<div class="col-2">
+<div class="form-floating md-3">
+<input type="password" name="npass" id="npass" class="form-control">
+<label for="npass">Password</label>
+</div>
+</div>
+</div>
+<div class="row justify-content-md-center">
+<div class="col-2">
+&emsp;
+&emsp;
+<input type="submit" value="Register">
+</div>
+</div>
+</div>
+</div>
+</form>
+<div>
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+</div>
+</body>
+</html>
+

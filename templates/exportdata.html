@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>Export Data</title>
+    <style>
+    .grid-container {
+          display: grid;
+          grid-template-columns:  auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto ;
+        }
+        .grid-item {
+          
+          border: 1px solid #b08bf8;
+          padding: 2px;
+          font-size: 15px;
+          text-align: left;
+        }
+     button {
+        -webkit-appearance: none;
+        width: auto;
+        min-width: 100px;
+        border-radius: 24px;
+        text-align: center;
+        padding: 15px 40px;
+        margin-top: 5px;
+        background-color: #b08bf8;
+        color: #ffffff;
+        font-size: 14px;
+        margin-left: auto;
+        font-weight: 500;
+        box-shadow: 0px 2px 6px -1px rgb(0 0 0 / 13%);
+        border: none;
+        transition: all 0.3s ease;
+        outline: 0;}
+        input[type=submit] {
+        -webkit-appearance: none;
+        width: auto;
+        min-width: 100px;
+        border-radius: 24px;
+        text-align: center;
+        padding: 15px 40px;
+        margin-top: 5px;
+        margin-bottom:15px;
+        background-color: #b08bf8;
+        color: #ffffff;
+        font-size: 14px;
+        margin-left: auto;
+        font-weight: 500;
+        box-shadow: 0px 2px 6px -1px rgb(0 0 0 / 13%);
+        border: none;
+        transition: all 0.3s ease;
+        outline: 0;
+        }
+        input[type=submit]:disabled,input[type=submit][disabled]
+        {
+            background-color:#cccccc;
+            color:#666666;
+        }
+        </style>
+</head>
+<body>
+<div>
+<form action="register" method="POST" id="register" style="display:none;">
+{%csrf_token%}
+<input type="submit" value="Add User" id="adduser" style="text-align: left;">
+</form>
+<form action="StartOp"id="StartOp" style="display: none;">
+<input type="submit" value="Admin Page">
+</form>
+<form action="CAtracker" style="display: inline;">
+<input type="submit" value="Edit Record">
+</form>
+<form action="home" method="POST" style="display: inline;">
+{%csrf_token%}
+<input type="submit" value="{{role}}" id="role" style="float:right;" disabled>
+<input type="submit" value="{{name}}" id="name" style="float:right;" disabled>
+<input type="submit" value="Logout" style="float:right;">
+</form>
+<form action="exportdata"style="display:inline;">
+<input type="submit" value="Export Data" id="expdata">
+</form>
+<form action="dash" style="display:inline;">
+<input type="submit" value="Dashboard" id="dash">
+</form>
+</div>
+<form action="downloadexcel">
+<input type="submit" value="Export Data" id="exportdata">
+</form>
+<div class="grid-container">
+    <div class="grid-item">SRFID</div>
+    <div class="grid-item">Barcode</div>
+    <div class="grid-item">Patient Name</div>  
+    <div class="grid-item">Mobile</div>
+    <div class="grid-item">Age</div>
+    <div class="grid-item">Gender</div>  
+    <div class="grid-item">Address</div>
+    <div class="grid-item">Client Code</div>
+    <div class="grid-item">Doctor</div>
+    <div class="grid-item">Remarks</div>
+    <div class="grid-item">Collection Executive</div>
+    <div class="grid-item">Email</div>
+    <div class="grid-item">Location</div>
+    <div class="grid-item">Run Number</div>
+    <div class="grid-item">Runtime</div>  
+    <div class="grid-item">ICMR Update</div>
+    <div class="grid-item">AccessionID</div>
+    <div class="grid-item">Result</div>
+    <div class="grid-item">CT Value</div>
+    {% for item in sql%}
+    <div class="grid-item">{{item.0}}</div>
+    <div class="grid-item">{{item.1}}</div>
+    <div class="grid-item">{{item.2}}</div>  
+    <div class="grid-item">{{item.3}}</div>
+    <div class="grid-item">{{item.4}}</div>
+    <div class="grid-item">{{item.5}}</div>  
+    <div class="grid-item">{{item.6}}</div>
+    <div class="grid-item">{{item.7}}</div>
+    <div class="grid-item">{{item.8}}</div>
+    <div class="grid-item">{{item.9}}</div>
+    <div class="grid-item">{{item.10}}</div>
+    <div class="grid-item">{{item.11}}</div>  
+    <div class="grid-item">{{item.12}}</div>
+    <div class="grid-item">{{item.13}}</div>
+    <div class="grid-item">{{item.14}}</div>
+    <div class="grid-item">{{item.15}}</div>
+    <div class="grid-item">{{item.16}}</div>
+    <div class="grid-item">{{item.17}}</div>
+    <div class="grid-item">{{item.18}}</div>
+    {% endfor %}
+  </div>
+  <script>
+  if("{{role}}"=="ADMIN")
+    {
+        document.getElementById("StartOp").style.display="inline";
+        document.getElementById("register").style.display="inline";
+    }
+  </script>
+</body>
+</html>
